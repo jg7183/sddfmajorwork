@@ -77,12 +77,12 @@
 
 		$scope.deleteProduct = function (index) {
 								$scope.index 		= 		index; 
-								$scope.stID 		= 		$scope.storage.datasource[index].stID ;
-								$scope.fname 		= 		$scope.storage.datasource[index].fname ;
-								$scope.lname 	    = 		$scope.storage.datasource[index].lname ;
-								$scope.subject 		= 		$scope.storage.datasource[index].subject ;
-								$scope.grade 	    = 		$scope.storage.datasource[index].grade;
-								$scope.day          = 		$scope.storage.datasource[index].day; 
+								$scope.stID 		= 		$scope.storage.tutra[index].stID ;
+								$scope.fname 		= 		$scope.storage.tutra[index].fname ;
+								$scope.lname 	    = 		$scope.storage.tutra[index].lname ;
+								$scope.subject 		= 		$scope.storage.tutra[index].subject ;
+								$scope.grade 	    = 		$scope.storage.tutra[index].grade;
+								$scope.day          = 		$scope.storage.tutra[index].day; 
 								
 								$scope.storage.datasource.splice(index, 1);
 								console.log("Deleted")

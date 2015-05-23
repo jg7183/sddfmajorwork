@@ -5,28 +5,33 @@
         app.controller('myController', function($scope, $localStorage) {
 			
 					$scope.storage = $localStorage.$default({
-    						tutra: [{
-											stID: 0,
-											fname: "Spider",
-											lname: "Man",
-											subject: "Chemistry",
-											grade: "A",
-											day:"Wednesday",
-											newMark:[3,4,12,8]
-										}									]
-					});
-					
-					$scope.storage = $localStorage.$default({
-    						tutraGradeStorage: [{
-											
-										}									]
+						tutra:[{
+							stID: 0,
+							fname: "Spider",
+							lname: "Man",
+							subject: "Chemistry",
+							grade: "A",
+							day:"Wednesday",
+							marks: [{
+								mark: 10,
+								assessmentNum: 1
+							}, {
+								mark: 20,
+								assessmentNum: 2
+							}, {
+								mark: 10,
+								assessmentNum: 3
+							}]
+						}]
 					});
 					  // end of creating localStorage 'datasource'		
 			
 			
 			
 					$scope.addStudentData = function () {
-						$scope.storage.tutra.push(angular.copy($scope.addStudent));
+						var student = angular.copy($scope.addStudent);
+						student.marks = []; //empty array
+						$scope.storage.tutra.push(data)
 						$scope.addStudent = {};
 					
 						//$scope.successfullyAdded = true;
@@ -40,16 +45,21 @@
 						//$scope.successfullyAdded = true;
 					}; //end addPerson
 				
+				$scope.newMark = {
+					mark: 0,
+					assessmentNum: 0
+				};
+
 				$scope.addStudentMark = function () {
-						var marknum = 0;
-						$scope.student.newMark = $scope.addStudent.newMark[marknum];
-						$scope.student.newAssessment = $scope.addStudent.newAssessment[marknum];
-						gradeChart.addData([$scope.student.newMark[marknum]],$scope.addStudent.newAssessment[marknum]);
-						gradeChart.update();
-						marknum++;
-						//scope.storage.tutra.push(angular.copy($scope.addStudent.newMark));
-						$scope.addStudent = {};
-						//$scope.successfullyAdded = true;
+					//get the marks and add it to the student
+					$scope.student.marks.push({
+						mark: $scope.newMark.mark,
+						assessmentNum: $scope.newMark.assessmentNum
+					});
+
+					//now add it to the chart
+					gradeChart.addData([$scope.newMark.mark], $scope.newMark.assessmentNum);
+					gradeChart.update();
 				}; //end addPerson
 
 					$scope.studentDashboard = function(student) {
@@ -60,6 +70,27 @@
 						$scope.grade  = student.grade;
 						$scope.day = student.day;*/
 						$scope.student = student;
+						//kill old canvas
+						$('#myChart').remove();
+						//re-create it with jquery
+						$('#dashboard-content').prepend('<canvas id="myChart" width="402" height="402" style="width: 402px; height: 402px;"></canvas>');
+						//re-create it with chart.js, after 250ms (why 250 I do not know)
+						setTimeout(function() {
+							var studentGrades = document.getElementById('myChart').getContext('2d');
+							gradeChart = new Chart(studentGrades).Line({
+								labels : $scope.student.marks.map(function(mark) { return mark.assessmentNum }),
+								datasets : [
+									{
+										fillColor : "rgba(172,194,132,0.4)",
+										strokeColor : "#ACC26D",
+										pointColor : "#fff",
+										pointStrokeColor : "#9DB86D",
+										data : $scope.student.marks.map(function(mark) { return mark.mark })
+									}
+								]
+							});
+							console.log('ok');
+						}, 250);
 					}
 					
 			

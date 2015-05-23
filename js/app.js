@@ -11,13 +11,14 @@
 											lname: "Man",
 											subject: "Chemistry",
 											grade: "A",
-											day:"Wednesday"
+											day:"Wednesday",
+											newMark:[3,4,12,8]
 										}									]
 					});
 					
 					$scope.storage = $localStorage.$default({
     						tutraGradeStorage: [{
-											mark:""
+											
 										}									]
 					});
 					  // end of creating localStorage 'datasource'		
@@ -40,12 +41,14 @@
 					}; //end addPerson
 				
 				$scope.addStudentMark = function () {
-					
-						$scope.student.newMark = $scope.addStudent.newMark;
-						$scope.student.newAssessment = $scope.addStudent.newAssessment;
-						$scope.storage.tutraGradeStorage.push(angular.copy($scope.addStudent.newMark));
-						gradeChart.addData([$scope.student.newMark],$scope.addStudent.newAssessment);
+						var marknum = 0;
+						$scope.student.newMark = $scope.addStudent.newMark[marknum];
+						$scope.student.newAssessment = $scope.addStudent.newAssessment[marknum];
+						$scope.storage.tutra.push(angular.copy($scope.addStudent.newMark[marknum]));
+						$scope.storage.tutra.push(angular.copy($scope.addStudent.newAssessment[marknum]));
+						gradeChart.addData([$scope.student.newMark[marknum]],$scope.addStudent.newAssessment[marknum]);
 						gradeChart.update();
+						marknum++;
 						//scope.storage.tutra.push(angular.copy($scope.addStudent.newMark));
 						$scope.addStudent = {};
 						//$scope.successfullyAdded = true;

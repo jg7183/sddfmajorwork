@@ -74,8 +74,9 @@
 					$scope.clearAll = function(){
 							$localStorage.$reset();	
 					};	// end clearALL	
-
-		$scope.deleteProduct = function (index) {
+		
+		//Initialises deletion process.
+		$scope.deleteStudent = function (index) {
 								$scope.index 		= 		index; 
 								$scope.stID 		= 		$scope.storage.tutra[index].stID ;
 								$scope.fname 		= 		$scope.storage.tutra[index].fname ;
@@ -83,9 +84,28 @@
 								$scope.subject 		= 		$scope.storage.tutra[index].subject ;
 								$scope.grade 	    = 		$scope.storage.tutra[index].grade;
 								$scope.day          = 		$scope.storage.tutra[index].day; 
+								
+								
+					};	
+					
+				//confirms deletion
+				$scope.deleteStudentYes = function (index) {
+							; 
 								$scope.storage.tutra.splice(index, 1);
 							
 								console.log("Deleted")
+								
+					};				
+
+		$scope.editStudent = function (index) {
+								$scope.index 		= 		index; 
+								$scope.stID 		= 		$scope.storage.tutra[index].stID ;
+								$scope.fname 		= 		$scope.storage.tutra[index].fname ;
+								$scope.lname 	    = 		$scope.storage.tutra[index].lname ;
+								$scope.subject 		= 		$scope.storage.tutra[index].subject ;
+								$scope.grade 	    = 		$scope.storage.tutra[index].grade;
+								$scope.day          = 		$scope.storage.tutra[index].day; 
+								
 								
 					};	
 

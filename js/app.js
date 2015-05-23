@@ -31,7 +31,7 @@
 					$scope.addStudentData = function () {
 						var student = angular.copy($scope.addStudent);
 						student.marks = []; //empty array
-						$scope.storage.tutra.push(data)
+						$scope.storage.tutra.push(student)
 						$scope.addStudent = {};
 					
 						//$scope.successfullyAdded = true;

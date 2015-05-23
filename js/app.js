@@ -35,7 +35,7 @@
 					$scope.addStudentDayTime = function () {
 						$scope.student.day = $scope.addStudent.day;
 						$scope.student.time = $scope.addStudent.time;
-						$scope.storage.tutra.push(angular.copy($scope.addStudent.day));
+						
 						
 						//$scope.successfullyAdded = true;
 					}; //end addPerson
@@ -44,8 +44,6 @@
 						var marknum = 0;
 						$scope.student.newMark = $scope.addStudent.newMark[marknum];
 						$scope.student.newAssessment = $scope.addStudent.newAssessment[marknum];
-						$scope.storage.tutra.push(angular.copy($scope.addStudent.newMark[marknum]));
-						$scope.storage.tutra.push(angular.copy($scope.addStudent.newAssessment[marknum]));
 						gradeChart.addData([$scope.student.newMark[marknum]],$scope.addStudent.newAssessment[marknum]);
 						gradeChart.update();
 						marknum++;

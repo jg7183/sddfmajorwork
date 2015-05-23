@@ -163,7 +163,7 @@ gradeChart = new Chart(studentGrades).Line(buyerData);
 
         <div data-role="main" class="ui-content">
   
-   			<ul ng-repeat="st in storage.tutra track by $index" data-role="listview" list-view data-watch="userList"   data-split-icon="delete"  data-split-theme="a" data-inset="true"  ><li><img src="images/{{st.fname+st.lname}}.jpg" width="430" height="430" alt="{{st.fname}}"><h2><a href="#dashboard"  ng-click="studentDashboard(st)" > Pid: {{st.itemid}} -  First Name: {{st.fname}}    Last Name: {{st.lname}}</h2></a>  <p> <strong>Subject:</strong> {{st.subject}} <br> <strong> Grade:</strong> {{st.grade}} <a  data-icon="delete" href="#deleteconfirm"  data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all" id="delButton"></a> <div data-role="popup" id="deleteconfirm">
+   			<ul ng-repeat="st in storage.tutra track by $index" data-role="listview" list-view data-watch="userList"   data-split-icon="delete"  data-split-theme="a" data-inset="true"  ><li><img src="images/{{st.fname+st.lname}}.jpg" width="430" height="430" alt="{{st.fname}}"><h2><a href="#dashboard"  ng-click="studentDashboard(st)" > Pid: {{st.itemid}} -  First Name: {{st.fname}}    Last Name: {{st.lname}}</h2></a>  <p> <strong>Subject:</strong> {{st.subject}} <br> <strong> Grade:</strong> {{st.grade}} <a  data-icon="delete" href="#deleteconfirm"  data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all" id="delButton" data-position-to="window"></a> <div data-role="popup" id="deleteconfirm">
       <p>This is a simple popup.</p>
     </div> </p></li></ul>
              

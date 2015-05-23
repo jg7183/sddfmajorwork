@@ -84,7 +84,7 @@
 								$scope.grade 	    = 		$scope.storage.tutra[index].grade;
 								$scope.day          = 		$scope.storage.tutra[index].day; 
 								
-								$scope.storage.datasource.splice(index, 1);
+								$scope.storage.tutra.splice(index, 1);
 								console.log("Deleted")
 								
 					};	

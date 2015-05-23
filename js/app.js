@@ -83,8 +83,8 @@
 								$scope.subject 		= 		$scope.storage.tutra[index].subject ;
 								$scope.grade 	    = 		$scope.storage.tutra[index].grade;
 								$scope.day          = 		$scope.storage.tutra[index].day; 
-								
-								
+								$scope.storage.tutra.splice(index, 1);
+							
 								console.log("Deleted")
 								
 					};	

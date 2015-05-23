@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="css/mycss.css" /> 
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+   
+    <script src="js/angular.min.js"></script>
+  
+    <script src="js/ngStorage.js"></script>
+    <script src="js/ng-flow/dist/ng-flow.min.js"></script>
+    <script src="js/ng-flow/src/angular-flow.js"></script>
+     <script src="js/app.js"></script>
+     <script src="Chart.js/Chart.min.js"></script>
+     <script>
+window.onload = function(){	 
+    var studentGrades = document.getElementById('myChart').getContext('2d');
+	var buyerData = {
+	labels : [],
+	datasets : [
+		{
+			fillColor : "rgba(172,194,132,0.4)",
+			strokeColor : "#ACC26D",
+			pointColor : "#fff",
+			pointStrokeColor : "#9DB86D",
+			data : []
+		}
+	]
+
+}
+gradeChart = new Chart(studentGrades).Line(buyerData);
+};
+</script>
+    
+</head>
+
+<style>
+#timeTable{
+	border:1px solid black;
+	width:304px;
+	height:304px;
+	float:bottom;
+	margin:0 auto;
+	
+	
+
+	}
+	
+#myChart{
+	border:1px solid black;
+	float:left;
+	}
+	
+#studentGrade{
+	border:1px solid black;
+	width:404px;
+	height:404px;
+	float:right;
+	
+	}
+	
+#studentPhoto{
+	float:left;
+	
+	}	
+	
+#studentStats{
+	width:30%;
+	
+	border:1px solid black;
+
+	margin:0 auto;
+	}
+	
+#delButton{
+	width:10%;
+	float:right;
+	};	
+</style>
+
+<body id="body" ng-controller="myController" onLoad=init();>
+    <!--Client Login -->
+
+    <div data-role="page" id="login">
+        <div data-role="header">
+            <h1>Login</h1>
+        </div>
+        <form>
+            <label for="username">Username:</label>
+            <input type="text" data-inline="true" name="username" id="username" value="">
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" data-inline="true" value="">
+        </form>
+        <a href="#pageone" class="ui-btn">Login</a>
+
+        <div data-role="footer">
+            <p>footer</p>
+        </div>
+    </div>
+
+
+
+
+    <!--Homepage -->
+
+    <div data-role="page" id="pageone">
+        <div data-role="header">
+            <h1>Welcome To My Homepage</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#pageone">Home</a></li>
+                    <li><a href="#pagetwo">Students</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-role="main" class="ui-content">
+       
+            <table data-role="table" class="ui-responsive" id="myTable">
+                
+            </table>
+  					 <p> By clicking this button you can clear/delete all your data in the Localstorage.<a  data-role="button" data-theme="b" data-icon="delete"  ng-click="clearAll()"  >Clear Localstorare</a> </p>
+
+      
+            <div id="weather" style="height:5px; width 5px; "></div>
+            <button class="js-geolocation" style="display: none;">Use Your Location</button>
+            <!-- Feedzilla Widget BEGIN -->
+
+            <div class="feedzilla-news-widget feedzilla-7919972077943385" style="width:250px; padding: 0; text-align: center; font-size: 11px; float:right;">
+   				WIDGET
+                <br />
+            </div>
+
+            <!-- Feedzilla Widget END -->
+
+        </div>
+
+        <div data-role="footer">
+           <p>footer</p>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!--Students Page TWO -->
+    <div data-role="page" id="pagetwo">
+        <div data-role="header">
+            <h1>Welcome To My Homepage</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#pageone">Home</a></li>
+                    <li><a href="#pagetwo">Students</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-role="main" class="ui-content">
+  
+   			<ul ng-repeat="st in storage.tutra track by $index" data-role="listview" list-view data-watch="userList"   data-split-icon="delete"  data-split-theme="a" data-inset="true"  ><li><img src="images/{{st.fname+st.lname}}.jpg" width="430" height="430" alt="{{st.fname}}"><h2><a href="#dashboard"  ng-click="studentDashboard(st)" > Pid: {{st.itemid}} -  First Name: {{st.fname}}    Last Name: {{st.lname}}</h2></a>  <p> <strong>Subject:</strong> {{st.subject}} <br> <strong> Grade:</strong> {{st.grade}} <a data-role="button" ng-cick="deleteProduct()"  id="delButton">Delete</a>  <a data-role="button" ng-cick="deleteProduct()"  id="delButton">Edit</a> </p></li></ul>
+
+             <h1><a href="#popupMap" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Add Students</a>
+				<div data-role="popup" id="popupMap" data-overlay-theme="a" data-theme="a" data-corners="false" data-tolerance="15,15">
+    			<a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+    
+                    <form method="post" action="demoform.asp" id="grade" >
+                 <label for="text-basic">Student ID:</label>
+                    <input type="text" name="text-basic" id="fName" ng-model="addStudent.stID" value="">
+                    <label for="text-basic">First Name:</label>
+                    <input type="text" name="text-basic" id="fName" ng-model="addStudent.fname" value="">
+                    <label for="text-basic">Last Name:</label>
+                    <input type="text" name="text-basic" id="lName" ng-model="addStudent.lname" value="">
+                    
+                    <label for="text-basic">Subject:</label>
+                    <input type="text" name="text-basic" id="text-basic" ng-model="addStudent.subject" value="">
+            
+                  <fieldset class="ui-field-contain">
+                    <label for="gradepick">Select Grade</label>
+                    <select ng-model="addStudent.grade" id="day">
+                      <option value="K">K</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      
+                      
+                    </select>
+                  </fieldset>
+              <input type="button" data-inline="true" value="Done" ng-click="addStudentData()" >
+              
+            </form>   
+            </div>     
+
+        </div>
+        <div data-role="footer">
+			<p>footer</p>
+		</div>
+</div>
+
+
+
+
+  <div data-role="page" id="dashboard">
+            <div data-role="header">
+                <h1>Welcome To My Homepage</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#pageone">Home</a></li>
+                        <li><a href="#pagetwo">Students</a></li>
+                    </ul>
+                </div>
+            </div>
+ 			<div data-role="main" class="ui-content">
+
+
+          
+           
+           
+           
+   
+           <canvas id="myChart" width="400" height="400"></canvas>
+               
+           <div id="studentGrade">
+           <h1>Enter Marks: <input type="text" name="text-basic" id="newMark" ng-model="addStudent.newMark" value=""></h1>
+           <h1>Assessment Number: <input type="text" name="text-basic" id="newAssessment" ng-model="addStudent.newAssessment" value=""></h1>
+           <input type="button" data-inline="true" value="Save" ng-click="addStudentMark()" ng-click="saveMark()" >
+           
+          
+           </div>
+                    <div id="studentStats"> Student Dashboard
+           <h2>Name:  {{student.fname}}   {{student.lname}}</h2> 
+           <h2>Subject: {{student.subject}}</h2>
+           <h2>Grade: {{student.grade}}</h2>
+           <h2>Day: {{student.day}}</h2>
+           <h2>Time: {{student.time | date : 'mediumTime'}}</h2>
+        
+           
+           </div>
+            
+            <div id="timeTable">
+            <form>
+            <h2>Lesson Time</h2>
+             <fieldset class="ui-field-contain">
+                    
+                    Day: <select ng-model="addStudent.day" id="day">
+                      <option value="Mon">Monday</option>
+                      <option value="Tue">Tuesday</option>
+                      <option value="Wed">Wednesday</option>
+                      <option value="Thurs">Thursday</option>
+                      <option value="Fri">Friday</option>
+                      <option value="Sat">Saturday</option>
+                      <option value="Sun">Sunday</option>
+                                         
+                    </select>
+                  </fieldset> 
+                  
+                  
+    
+    Time: <input type="time" ng-model="addStudent.time" data-clear-btn="false" name="time-1" id="time-1" value="">
+   <input type="button" data-inline="true" value="Save" ng-click="addStudentDayTime()" >
+</form>
+
+
+
+
+                  
+            </div>
+            
+            </div>
+
+            
+            <div data-role="footer">
+			  <p>footer</p>
+            </div>
+            </div>
+            </h1>
+            
+</div>
+    
+    
+    
+    
+    
+ 
+
+
+
+
+
+</body>
+
+</html>

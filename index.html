@@ -266,20 +266,12 @@ gradeChart = new Chart(studentGrades).Line(buyerData);
                     </ul>
                 </div>
             </div>
- 			<div data-role="main" class="ui-content">
-
-
-          
-           
-           
-           
-   
-           <canvas id="myChart" width="400" height="400"></canvas>
+ 			<div data-role="main" class="ui-content" id="dashboard-content">
                
            <div id="studentGrade">
-           <h1>Enter Marks: <input type="text" name="text-basic" id="newMark" ng-model="addStudent.newMark" value=""></h1>
-           <h1>Assessment Number: <input type="text" name="text-basic" id="newAssessment" ng-model="addStudent.newAssessment" value=""></h1>
-           <input type="button" data-inline="true" value="Save" ng-click="addStudentMark()" ng-click="saveMark()" >
+           <h1>Enter Marks: <input type="text" name="text-basic" id="newMark" ng-model="newMark.mark" value=""></h1>
+           <h1>Assessment Number: <input type="text" name="text-basic" id="newAssessment" ng-model="newMark.assessmentNum" value=""></h1>
+           <input type="button" data-inline="true" value="Save" ng-click="addStudentMark()" >
            
           
            </div>

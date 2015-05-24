@@ -63,10 +63,10 @@
 					gradeChart.update();
 				}; //end addPerson
 
+//This function removes the last item in the marks array, and then redraws the chart.
 				$scope.undoMark = function (){
-					
-					gradeChart.removeData(2);
-					gradeChart.update();
+					$scope.student.marks.splice($scope.student.marks.length - 1, 1)
+					$scope.studentDashboard($scope.student)
 					console.log("Mark Undone")
 					};
 					

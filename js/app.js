@@ -65,7 +65,7 @@
 
 				$scope.undoMark = function (){
 					
-					gradeChart.removeData();
+					gradeChart.removeData(2);
 					gradeChart.update();
 					console.log("Mark Undone")
 					};

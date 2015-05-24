@@ -29,6 +29,7 @@
 			
 			
 					$scope.addStudentData = function () {
+						
 						var student = angular.copy($scope.addStudent);
 						student.marks = []; //empty array
 						$scope.storage.tutra.push(student)
@@ -73,7 +74,7 @@
 						//kill old canvas
 						$('#myChart').remove();
 						//re-create it with jquery
-						$('#dashboard-content').prepend('<canvas id="myChart" width="402" height="402" style="width: 402px; height: 402px;"></canvas>');
+						$('#dashboard-content').prepend('<canvas id="myChart" width="402" height="402" style="width: 402px; height: 402px;" class="ui-block-c"></canvas>');
 						//re-create it with chart.js, after 250ms (why 250 I do not know)
 						setTimeout(function() {
 							var studentGrades = document.getElementById('myChart').getContext('2d');

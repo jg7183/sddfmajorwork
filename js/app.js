@@ -71,25 +71,23 @@
 					};
 					
 					
+					//ChartJS init and plot function.
 					$scope.studentDashboard = function(student) {
-						/*$scope.stID = student.stID;
-						$scope.fname  = student.fname;
-						$scope.lname  = student.lname;
-						$scope.subject  = student.subject;
-						$scope.grade  = student.grade;
-						$scope.day = student.day;*/
+						//Puts student dataset on the scope. 
 						$scope.student = student;
-						//kill old canvas
+						//kill old canvas, this ensures no clashing when you leave the page and come back.
 						$('#myChart').remove();
-						//re-create it with jquery
-						$('#dashboard-content').prepend('<canvas id="myChart" width="402" height="402" style="width: 402px; height: 402px;" class="ui-block-c"></canvas>');
+						//re-create it with jquery, appends canvas element to page
+						$('#dashboard-content').prepend('<canvas id="myChart" width="402" height="402" style="width: 402px; 			                        height: 402px;" class="ui-block-c"></canvas>');
 						//re-create it with chart.js, after 250ms (why 250 I do not know)
 						setTimeout(function() {
+							//Getting the context of the canvas, determines what style of media is to be displayed.
 							var studentGrades = document.getElementById('myChart').getContext('2d');
 							gradeChart = new Chart(studentGrades).Line({
 								labels : $scope.student.marks.map(function(mark) { return mark.assessmentNum }),
 								datasets : [
 									{
+										//Line colour and styles, and plots. JSON formatted.
 										fillColor : "rgba(172,194,132,0.4)",
 										strokeColor : "#ACC26D",
 										pointColor : "#fff",
@@ -98,7 +96,8 @@
 									}
 								]
 							});
-							console.log('ok');
+							//If all goes smoothely, console logs a success. 
+							console.log('Success');
 						}, 250);
 					}
 					

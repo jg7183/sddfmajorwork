@@ -63,6 +63,19 @@
 					gradeChart.update();
 				}; //end addPerson
 
+				$scope.undoMark = function (){
+					
+					$scope.student.marks.push({
+						mark:null,
+						assessmentNum:null
+					});
+					
+					gradeChart.removeData();
+					gradeChart.update();
+					console.log("Mark Undone")
+					};
+					
+					
 					$scope.studentDashboard = function(student) {
 						/*$scope.stID = student.stID;
 						$scope.fname  = student.fname;

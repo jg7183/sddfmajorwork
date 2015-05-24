@@ -273,7 +273,7 @@ gradeChart = new Chart(studentGrades).Line(buyerData);
  			<div data-role="main" class="ui-content" id="dashboard-content">
                
            <div id="studentGrade" class="ui-block-c">
-           <button id="undoBTN" class="ui-block-a">Undo</button>
+           <button id="undoBTN" class="ui-block-a" ng-click="undoMark">Undo</button>
            <h1>Enter Marks: <input type="text" name="text-basic" id="newMark" ng-model="newMark.mark" value=""></h1>
            <h1>Assessment Number: <input type="text" name="text-basic" id="newAssessment" ng-model="newMark.assessmentNum" value=""></h1>
            <input type="button" data-inline="true" value="Save" ng-click="addStudentMark()" >

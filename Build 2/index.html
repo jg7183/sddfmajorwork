@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/sddmajorwork.css" /> 
+    <link rel="stylesheet" href="css/jquery.mobile.icons.min.css" /> 
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" /> 
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+   
+    <script src="js/angular.min.js"></script>
+  
+    <script src="js/ngStorage.js"></script>
+    <script src="js/ng-flow/dist/ng-flow.min.js"></script>
+    <script src="js/ng-flow/src/angular-flow.js"></script>
+     <script src="js/app.js"></script>
+     <script src="Chart.js/Chart.min.js"></script>
+     <script>
+window.onload = function(){	 
+    var studentGrades = document.getElementById('myChart').getContext('2d');
+	var buyerData = {
+	labels : [],
+	datasets : [
+		{
+			fillColor : "rgba(172,194,132,0.4)",
+			strokeColor : "#ACC26D",
+			pointColor : "#fff",
+			pointStrokeColor : "#9DB86D",
+			data : []
+		}
+	]
+
+}
+gradeChart = new Chart(studentGrades).Line(buyerData);
+};
+</script>
+    
+</head>
+
+<style>
+#timeTable{
+	border:1px solid black;
+	width:404px;
+	height:404px;
+	
+	
+	
+
+	}
+	
+#myChart{
+	width:404px;
+	height:404px;
+	border:1px solid black;
+	
+	}
+	
+#studentGrade{
+	border:1px solid black;
+	width:404px;
+	height:404px;
+	
+	
+	}
+	
+#studentPhoto{
+
+	}	
+	
+#studentStats{
+	width:404px;
+	height:404px;
+	
+	border:1px solid black;
+
+	
+	}
+	
+#delButton{
+	width:10%;
+	float:right;
+	
+	}
+#undoBTN{
+		width:90px;
+		float:right;
+		
+	};	
+</style>
+
+<body id="body" ng-controller="myController"  onLoad=init();>
+    <!--Client Login -->
+
+    <div data-role="page" id="login">
+        <div data-role="header">
+            <h1>Login</h1>
+        </div>
+        <form>
+            <label for="username">Username:</label>
+            <input type="text" data-inline="true" name="username" id="username" value="">
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" data-inline="true" value="">
+        </form>
+        <a href="#pageone" class="ui-btn">Login</a>
+
+        <div data-role="footer">
+            JacobSoft Inc 
+        </div>
+    </div>
+
+
+
+
+    <!--Homepage -->
+
+    <div data-role="page" id="pageone">
+        <div data-role="header">
+            <h1>Tutra</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#pageone">Home</a></li>
+                    <li><a href="#pagetwo">Students</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-role="main" class="ui-content">
+       <button ng-click="clearAll()"></button>
+            <table data-role="table" class="ui-responsive" id="myTable">
+                
+            </table>
+  					
+
+      
+            <div id="weather" style="height:5px; width 5px; "></div>
+            <button class="js-geolocation" style="display: none;">Use Your Location</button>
+            <!-- Feedzilla Widget BEGIN -->
+
+            
+
+            <!-- Feedzilla Widget END -->
+
+        </div>
+
+        <div data-role="footer">
+           JacobSoft Inc 
+        </div>
+    </div>
+
+
+
+
+
+
+    <!--Students Page TWO -->
+    <div data-role="page" id="pagetwo" class="ui-grid-d">
+        <div data-role="header">
+            <h1>Tutra</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#pageone">Home</a></li>
+                    <li><a href="#pagetwo">Students</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-role="main" class="ui-content">
+  			Search:<input id="searchfilter" data-type="search" ng-model="searchQuery"/>
+   			<ul ng-repeat="st in storage.tutra | filter:searchQuery" data-role="listview" list-view data-watch="userList"   data-split-icon="delete"  data-split-theme="a" data-inset="true"    ><li><img src="images/{{st.fname+st.lname}}.jpg" width="430" height="430" alt="{{st.fname}}"><h2><a{{st.fname}} {{st.lname}}</h2></a>  <p> <strong>Subject:</strong> {{st.subject}} <br> <strong> Grade:</strong> {{st.grade}} <a      </div> 
+    
+    <!--EDIT-->
+                        <div data-role="popup" id="edit" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+                        <h3>EDIT RECORD </h3><a href="index.html" ng-click="editStudent(index)"   data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Save Edit</a>
+                          
+                          <table width="90%" border="1" cellspacing="2" cellpadding="2">
+                              <tr>
+                                <td>Student ID</td>
+                                <td><input  type="text" name="studentID" ng-model="st.stID" /></td>
+                              </tr>
+                              <tr>
+                                <td>First Name</td>
+                                <td> <input  type="text" name="firstname" ng-model="st.fname"  /></td>
+                              </tr>
+                              <tr>
+                                <td>Last Name</td>
+                                <td> <input  type="text" name="lastname" ng-model="st.lname"  /></td>
+                              </tr>
+                              <tr>
+                                <td>Subject</td>
+                                <td> <input type="text" name="subject" ng-model="st.subject"  /></td>
+                              </tr>
+                              <tr>
+                                <td>Grade</td>
+                                <td> <input type="text" name="grade" ng-model="st.grade"  /></td>
+                              </tr>                                                       
+                            </table>
+                        </div><!--end of edit-->
+                
+                
+                    <!--DELETE-->
+                   
+    
+    </p></li></ul>
+             
+
+             <h1><a href="#popupMap" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Add Students</a>
+				<div data-role="popup" id="popupMap" data-overlay-theme="a" data-theme="a" data-corners="false" data-tolerance="15,15">
+    			<a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+    
+                    <form method="post" action="demoform.asp" id="grade" >
+                 <label for="text-basic">Student ID:</label>
+                    <input type="text" name="text-basic" id="fName" ng-model="addStudent.stID" value="">
+                    <label for="text-basic">First Name:</label>
+                    <input type="text" name="text-basic" id="fName" ng-model="addStudent.fname" value="">
+                    <label for="text-basic">Last Name:</label>
+                    <input type="text" name="text-basic" id="lName" ng-model="addStudent.lname" value="">
+                    
+                    <label for="text-basic">Subject:</label>
+                    <input type="text" name="text-basic" id="text-basic" ng-model="addStudent.subject" value="">
+            
+                  <fieldset class="ui-field-contain">
+                    <label for="gradepick">Select Grade</label>
+                    <select ng-model="addStudent.grade" id="day">
+                      <option value="K">K</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      
+                      
+                    </select>
+                  </fieldset>
+              <input type="button" data-inline="true" value="Done" ng-click="addStudentData()" >
+              
+            </form>   
+            </div>     
+
+        </div>
+        <div data-role="footer">
+			JacobSoft Inc 
+		</div>
+</div>
+
+
+
+            </div>
+           
+
+    
+    
+    
+    
+ 
+
+
+
+
+
+</body>
+
+</html>

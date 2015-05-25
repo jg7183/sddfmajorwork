@@ -3,8 +3,9 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" href="css/mycss.css" /> 
-    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/sddmajorwork.css" /> 
+    <link rel="stylesheet" href="css/jquery.mobile.icons.min.css" /> 
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" /> 
     <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
    
@@ -105,7 +106,7 @@ gradeChart = new Chart(studentGrades).Line(buyerData);
         <a href="#pageone" class="ui-btn">Login</a>
 
         <div data-role="footer">
-            <p>footer</p>
+            JacobSoft Inc 
         </div>
     </div>
 
@@ -116,7 +117,7 @@ gradeChart = new Chart(studentGrades).Line(buyerData);
 
     <div data-role="page" id="pageone">
         <div data-role="header">
-            <h1>Welcome To My Homepage</h1>
+            <h1>Tutra</h1>
             <div data-role="navbar">
                 <ul>
                     <li><a href="#pageone">Home</a></li>
@@ -144,7 +145,7 @@ gradeChart = new Chart(studentGrades).Line(buyerData);
         </div>
 
         <div data-role="footer">
-           <p>footer</p>
+           JacobSoft Inc 
         </div>
     </div>
 
@@ -156,7 +157,7 @@ gradeChart = new Chart(studentGrades).Line(buyerData);
     <!--Students Page TWO -->
     <div data-role="page" id="pagetwo" class="ui-grid-d">
         <div data-role="header">
-            <h1>Welcome To My Homepage</h1>
+            <h1>Tutra</h1>
             <div data-role="navbar">
                 <ul>
                     <li><a href="#pageone">Home</a></li>
@@ -171,8 +172,8 @@ gradeChart = new Chart(studentGrades).Line(buyerData);
             <a  data-icon="delete" ng-click="deleteStudent($index)" href="#edit"  data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all" id="delButton" data-position-to="window">Edit</a>
             <div data-role="popup" id="deleteconfirm">
       <p><h2>Are you sure you want to delete this student?<h2>
-      <a href="pagetwo" class="ui-btn" ng-click="deleteStudentYes(index)" >Yes</a>
-      <a href="pagetwo" class="ui-btn">No</a>
+      <a href="#pagetwo" class="ui-btn" ng-click="deleteStudentYes(index)" >Yes</a>
+      <a href="#pagetwo" class="ui-btn">No</a>
       </p>
     </div> 
     
@@ -253,7 +254,7 @@ gradeChart = new Chart(studentGrades).Line(buyerData);
 
         </div>
         <div data-role="footer">
-			<p>footer</p>
+			JacobSoft Inc 
 		</div>
 </div>
 
@@ -262,7 +263,7 @@ gradeChart = new Chart(studentGrades).Line(buyerData);
 
   <div data-role="page" id="dashboard">
             <div data-role="header">
-                <h1>Welcome To My Homepage</h1>
+                <h1>Tutra</h1>
                 <div data-role="navbar">
                     <ul>
                         <li><a href="#pageone">Home</a></li>
@@ -272,58 +273,9 @@ gradeChart = new Chart(studentGrades).Line(buyerData);
             </div>
  			<div data-role="main" class="ui-content" id="dashboard-content">
                
-           <div id="studentGrade" class="ui-block-c">
-           <button id="undoBTN" class="ui-block-a" ng-click="undoMark()" ng-click="studentDashboard">Undo</button>
-           <h1>Enter Marks: <input type="text" name="text-basic" id="newMark" ng-model="newMark.mark" value=""></h1>
-           <h1>Assessment Number: <input type="text" name="text-basic" id="newAssessment" ng-model="newMark.assessmentNum" value=""></h1>
-           <input type="button" data-inline="true" value="Save" ng-click="addStudentMark()" >
-           
-          
-           </div>
-                    <div id="studentStats" class="ui-block-b"> Student Dashboard
-           <h2>Name:  {{student.fname}}   {{student.lname}}</h2> 
-           <h2>Subject: {{student.subject}}</h2>
-           <h2>Grade: {{student.grade}}</h2>
-           <h2>Day: {{student.day}}</h2>
-           <h2>Time: {{student.time | date : 'mediumTime'}}</h2>
-        
-           
-           </div>
-            
-            <div id="timeTable" class=ui-block-d>
-            <form>
-            <h2>Lesson Time</h2>
-             <fieldset class="ui-field-contain">
-                    
-                    Day: <select ng-model="addStudent.day" id="day">
-                      <option value="Mon">Monday</option>
-                      <option value="Tue">Tuesday</option>
-                      <option value="Wed">Wednesday</option>
-                      <option value="Thurs">Thursday</option>
-                      <option value="Fri">Friday</option>
-                      <option value="Sat">Saturday</option>
-                      <option value="Sun">Sunday</option>
-                                         
-                    </select>
-                  </fieldset> 
-                  
-                  
-    
-    Time: <input type="time" ng-model="addStudent.time" data-clear-btn="false" name="time-1" id="time-1" value="">
-   <input type="button" data-inline="true" value="Save" ng-click="addStudentDayTime()" >
-</form>
-
-
-
-
-                  
-            </div>
-            
-            </div>
-
             
             <div data-role="footer">
-			  <p>footer</p>
+			  JacobSoft Inc 
             </div>
             </div>
            
